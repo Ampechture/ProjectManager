@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Project Page</title>
+</head>
+<body>
+
+<h1 th:text="${task.projectName}"></h1>
+
+O
+
+<form th:action="@{/addSubtask/{projectId}(projectId=${task.id})}" method="post" th:object="${newSubtask}">
+    <label for="taskName">Subtask Name:</label>
+    <input type="text" id="taskName" th:field="*{taskName}" required>
+    <button type="submit">Add Subtask</button>
+</form>
+
+<ul>
+    <li th:each="subtask : ${task.subtasks}" th:text="${subtask.taskName}"></li>
+</ul>
+<a th:href="@{/}">
+    <button>Back to Main Page</button>
+</a>
+
+</body>
+</html>
